@@ -1,8 +1,6 @@
-# Egghat Web
+# Scramble
 
 Share recipes freely.
-
-Egghat is a recipe sharing platform where *you* are in control.
 
 ## License
 

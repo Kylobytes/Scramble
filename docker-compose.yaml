@@ -1,20 +1,18 @@
-version: "3.8"
-
 services:
   db:
     image: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: egghat_server_dev
+      POSTGRES_DB: scramble_dev
     volumes:
       - /var/lib/postgresql/data
   web:
     build: .
     command: mix phx.server
     ports:
-      - "4000:4000"
+      - 4000:4000
     depends_on:
       - db
     volumes:
-      - .:/egghat_server:Z
+      - .:/scramble

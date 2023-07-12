@@ -1,6 +1,6 @@
-from elixir:slim
+from elixir:1.15-slim
 
-ENV APP_DIR /egghat_server
+ENV APP_DIR /scramble
 
 RUN apt update -y && apt upgrade -y && \
     apt install curl -y && \
@@ -25,9 +25,6 @@ RUN mix local.hex --force && \
     mix deps.get --force
 
 WORKDIR assets
-
-RUN npm install && \
-    node node_modules/webpack/bin/webpack.js --mode development
 
 WORKDIR $APP_DIR
 
