@@ -20,6 +20,11 @@ config :scramble, ScrambleWeb.Endpoint,
   pubsub_server: Scramble.PubSub,
   live_view: [signing_salt: "AWLjTs3v"]
 
+# Configures generators
+config :scramble, :generators,
+  binary_id: true,
+  sample_binary_id: "11111111-1111-1111-1111-111111111111"
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
