@@ -1,10 +1,10 @@
-from elixir:1.15-slim
+from elixir:1.16-slim
 
-ENV APP_DIR /scramble
+ENV APP_DIR /app
 
 RUN apt update -y && apt upgrade -y && \
     apt install curl -y && \
-    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt install gcc g++ make nodejs inotify-tools postgresql-client locales -y
 
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
