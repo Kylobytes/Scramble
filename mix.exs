@@ -39,7 +39,7 @@ defmodule Scramble.MixProject do
       {:floki, ">= 0.36.1", only: :test},
       {:gettext, "~> 0.24"},
       {:jason, "~> 1.4"},
-      {:phoenix, "~> 1.7.11"},
+      {:phoenix, "~> 1.7.12"},
       {:phoenix_ecto, "~> 4.5"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_dashboard, "~> 0.8.3"},
@@ -50,7 +50,7 @@ defmodule Scramble.MixProject do
       {:swoosh, "~> 1.16"},
       {:tailwind, "~> 0.2.2", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 1.0"},
-      {:telemetry_poller, "~> 1.0"}
+      {:telemetry_poller, "~> 1.1"}
     ]
   end
 
