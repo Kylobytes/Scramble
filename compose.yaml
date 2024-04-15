@@ -2,18 +2,18 @@ services:
   db:
     image: postgres:16
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: scramble_dev
+      POSTGRES_USER: ${DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+      POSTGRES_DB: ${DATABASE_NAME:-scramble_dev}
     volumes:
       - data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - ${DATABASE_PORT:-5432}:5432
   web:
     build: .
     command: mix phx.server
     ports:
-      - 4000:4000
+      - ${APP_PORT:-4000}:4000
     depends_on:
       - db
     volumes:
