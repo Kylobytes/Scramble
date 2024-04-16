@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :scramble, Scramble.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "db",
-  database: "scramble_dev",
+  username: System.get_env("DATABASE_USER", "postgres"),
+  password: System.get_env("DATABASE_PASSWORD", "postgres"),
+  hostname: System.get_env("DATABASE_HOST", "database"),
+  database: System.get_env("DATABASE_NAME", "scramble_dev"),
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -19,7 +19,7 @@ config :scramble, Scramble.Repo,
 config :scramble, ScrambleWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {0, 0, 0, 0}, port: 4000],
+  http: [ip: {0, 0, 0, 0}, port: System.get_env("APP_PORT", "4000")],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,

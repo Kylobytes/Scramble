@@ -1,5 +1,5 @@
 services:
-  db:
+  database:
     image: postgres:16
     environment:
       POSTGRES_USER: ${DATABASE_USER:-postgres}
@@ -12,10 +12,15 @@ services:
   web:
     build: .
     command: mix phx.server
+    environment:
+      DATABASE_USER: ${DATABASE_USER:-postgres}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+      DATABASE_NAME: ${DATABASE_NAME:-scramble_dev}
+      DATABASE_HOST: ${DATABASE_NAME:-database}
     ports:
       - ${APP_PORT:-4000}:4000
     depends_on:
-      - db
+      - database
     volumes:
       - .:/app
 
