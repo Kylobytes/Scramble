@@ -1,0 +1,41 @@
+<.header>
+  Listing Pantry items
+  <:actions>
+    <.link patch={~p"/pantry_items/new"}>
+      <.button>New Pantry item</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="pantry_items"
+  rows={@streams.pantry_items}
+  row_click={fn {_id, pantry_item} -> JS.navigate(~p"/pantry_items/#{pantry_item}") end}
+>
+  <:col :let={{_id, pantry_item}} label="Name"><%= pantry_item.name %></:col>
+  <:action :let={{_id, pantry_item}}>
+    <div class="sr-only">
+      <.link navigate={~p"/pantry_items/#{pantry_item}"}>Show</.link>
+    </div>
+    <.link patch={~p"/pantry_items/#{pantry_item}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, pantry_item}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: pantry_item.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="pantry_item-modal" show on_cancel={JS.patch(~p"/pantry_items")}>
+  <.live_component
+    module={ScrambleWeb.PantryItemLive.FormComponent}
+    id={@pantry_item.id || :new}
+    title={@page_title}
+    action={@live_action}
+    pantry_item={@pantry_item}
+    patch={~p"/pantry_items"}
+  />
+</.modal>

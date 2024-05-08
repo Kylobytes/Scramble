@@ -1,0 +1,26 @@
+<.header>
+  Pantry item <%= @pantry_item.id %>
+  <:subtitle>This is a pantry_item record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/pantry_items/#{@pantry_item}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit pantry_item</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @pantry_item.name %></:item>
+</.list>
+
+<.back navigate={~p"/pantry_items"}>Back to pantry_items</.back>
+
+<.modal :if={@live_action == :edit} id="pantry_item-modal" show on_cancel={JS.patch(~p"/pantry_items/#{@pantry_item}")}>
+  <.live_component
+    module={ScrambleWeb.PantryItemLive.FormComponent}
+    id={@pantry_item.id}
+    title={@page_title}
+    action={@live_action}
+    pantry_item={@pantry_item}
+    patch={~p"/pantry_items/#{@pantry_item}"}
+  />
+</.modal>

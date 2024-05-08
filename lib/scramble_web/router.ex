@@ -52,8 +52,8 @@ defmodule ScrambleWeb.Router do
 
     live_session :redirect_if_user_is_authenticated,
       on_mount: [{ScrambleWeb.UserAuth, :redirect_if_user_is_authenticated}] do
-      live "/users/register", UserRegistrationLive, :new
-      live "/users/log_in", UserLoginLive, :new
+      live "/register", UserRegistrationLive, :new
+      live "/login", UserLoginLive, :new
       live "/users/reset_password", UserForgotPasswordLive, :new
       live "/users/reset_password/:token", UserResetPasswordLive, :edit
     end
@@ -68,7 +68,13 @@ defmodule ScrambleWeb.Router do
       on_mount: [{ScrambleWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
-    end
+
+      live "/pantry_items", PantryItemLive.Index, :index
+      live "/pantry_items/new", PantryItemLive.Index, :new
+      live "/pantry_items/:id/edit", PantryItemLive.Index, :edit
+
+      live "/pantry_items/:id", PantryItemLive.Show, :show
+      live "/pantry_items/:id/show/edit", PantryItemLive.Show, :edit    end
   end
 
   scope "/", ScrambleWeb do
