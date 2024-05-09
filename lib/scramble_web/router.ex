@@ -74,7 +74,15 @@ defmodule ScrambleWeb.Router do
       live "/pantry_items/:id/edit", PantryItemLive.Index, :edit
 
       live "/pantry_items/:id", PantryItemLive.Show, :show
-      live "/pantry_items/:id/show/edit", PantryItemLive.Show, :edit    end
+      live "/pantry_items/:id/show/edit", PantryItemLive.Show, :edit
+
+      live "/recipes", RecipeLive.Index, :index
+      live "/recipes/new", RecipeLive.Index, :new
+      live "/recipes/:id/edit", RecipeLive.Index, :edit
+
+      live "/recipes/:id", RecipeLive.Show, :show
+      live "/recipes/:id/show/edit", RecipeLive.Show, :edit
+    end
   end
 
   scope "/", ScrambleWeb do
