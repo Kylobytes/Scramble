@@ -58,7 +58,7 @@ defmodule ScrambleWeb.Router do
       live "/users/reset_password/:token", UserResetPasswordLive, :edit
     end
 
-    post "/users/log_in", UserSessionController, :create
+    post "/login", UserSessionController, :create
   end
 
   scope "/", ScrambleWeb do
@@ -102,7 +102,7 @@ defmodule ScrambleWeb.Router do
   scope "/", ScrambleWeb do
     pipe_through [:browser]
 
-    delete "/users/log_out", UserSessionController, :delete
+    delete "/logout", UserSessionController, :delete
 
     live_session :current_user,
       on_mount: [{ScrambleWeb.UserAuth, :mount_current_user}] do
