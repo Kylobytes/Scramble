@@ -33,4 +33,19 @@ defmodule Scramble.RecipesFixtures do
 
     ingredient
   end
+
+  @doc """
+  Generate a instruction.
+  """
+  def instruction_fixture(attrs \\ %{}) do
+    {:ok, instruction} =
+      attrs
+      |> Enum.into(%{
+        content: "some content",
+        order: 42
+      })
+      |> Scramble.Recipes.create_instruction()
+
+    instruction
+  end
 end

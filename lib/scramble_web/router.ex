@@ -89,6 +89,13 @@ defmodule ScrambleWeb.Router do
 
       live "/ingredients/:id", IngredientLive.Show, :show
       live "/ingredients/:id/show/edit", IngredientLive.Show, :edit
+
+      live "/instructions", InstructionLive.Index, :index
+      live "/instructions/new", InstructionLive.Index, :new
+      live "/instructions/:id/edit", InstructionLive.Index, :edit
+
+      live "/instructions/:id", InstructionLive.Show, :show
+      live "/instructions/:id/show/edit", InstructionLive.Show, :edit
     end
   end
 

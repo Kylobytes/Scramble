@@ -114,4 +114,60 @@ defmodule Scramble.RecipesTest do
       assert %Ecto.Changeset{} = Recipes.change_ingredient(ingredient)
     end
   end
+
+  describe "instructions" do
+    alias Scramble.Recipes.Instruction
+
+    import Scramble.RecipesFixtures
+
+    @invalid_attrs %{content: nil, order: nil}
+
+    test "list_instructions/0 returns all instructions" do
+      instruction = instruction_fixture()
+      assert Recipes.list_instructions() == [instruction]
+    end
+
+    test "get_instruction!/1 returns the instruction with given id" do
+      instruction = instruction_fixture()
+      assert Recipes.get_instruction!(instruction.id) == instruction
+    end
+
+    test "create_instruction/1 with valid data creates a instruction" do
+      valid_attrs = %{content: "some content", order: 42}
+
+      assert {:ok, %Instruction{} = instruction} = Recipes.create_instruction(valid_attrs)
+      assert instruction.content == "some content"
+      assert instruction.order == 42
+    end
+
+    test "create_instruction/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Recipes.create_instruction(@invalid_attrs)
+    end
+
+    test "update_instruction/2 with valid data updates the instruction" do
+      instruction = instruction_fixture()
+      update_attrs = %{content: "some updated content", order: 43}
+
+      assert {:ok, %Instruction{} = instruction} = Recipes.update_instruction(instruction, update_attrs)
+      assert instruction.content == "some updated content"
+      assert instruction.order == 43
+    end
+
+    test "update_instruction/2 with invalid data returns error changeset" do
+      instruction = instruction_fixture()
+      assert {:error, %Ecto.Changeset{}} = Recipes.update_instruction(instruction, @invalid_attrs)
+      assert instruction == Recipes.get_instruction!(instruction.id)
+    end
+
+    test "delete_instruction/1 deletes the instruction" do
+      instruction = instruction_fixture()
+      assert {:ok, %Instruction{}} = Recipes.delete_instruction(instruction)
+      assert_raise Ecto.NoResultsError, fn -> Recipes.get_instruction!(instruction.id) end
+    end
+
+    test "change_instruction/1 returns a instruction changeset" do
+      instruction = instruction_fixture()
+      assert %Ecto.Changeset{} = Recipes.change_instruction(instruction)
+    end
+  end
 end
