@@ -32,24 +32,24 @@ defmodule Scramble.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:bcrypt_elixir, "~> 3.1"},
-      {:ecto_sql, "~> 3.11"},
-      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:finch, "~> 0.18"},
-      {:floki, ">= 0.36.1", only: :test},
-      {:gettext, "~> 0.24"},
+      {:bcrypt_elixir, "~> 3.3"},
+      {:ecto_sql, "~> 3.13"},
+      {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
+      {:finch, "~> 0.20"},
+      {:floki, ">= 0.38.0", only: :test},
+      {:gettext, "~> 1.0"},
       {:jason, "~> 1.4"},
-      {:phoenix, "~> 1.7.12"},
-      {:phoenix_ecto, "~> 4.5"},
-      {:phoenix_html, "~> 4.1"},
-      {:phoenix_live_dashboard, "~> 0.8.3"},
-      {:phoenix_live_reload, "~> 1.5", only: :dev},
-      {:phoenix_live_view, "~> 0.20.14"},
+      {:phoenix, "~> 1.8.3"},
+      {:phoenix_ecto, "~> 4.7"},
+      {:phoenix_html, "~> 4.3"},
+      {:phoenix_live_dashboard, "~> 0.8.7"},
+      {:phoenix_live_reload, "~> 1.6", only: :dev},
+      {:phoenix_live_view, "~> 1.1.19"},
       {:plug_cowboy, "~> 2.7"},
       {:postgrex, ">= 0.0.0"},
       {:swoosh, "~> 1.16"},
-      {:tailwind, "~> 0.2.2", runtime: Mix.env() == :dev},
-      {:telemetry_metrics, "~> 1.0"},
+      {:tailwind, "~> 0.4.1", runtime: Mix.env() == :dev},
+      {:telemetry_metrics, "~> 1.1"},
       {:telemetry_poller, "~> 1.1"}
     ]
   end
