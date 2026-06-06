@@ -1,11 +1,11 @@
-from elixir:1.16-slim
+from elixir:1.18-slim
 
 ENV APP_DIR /app
 
-RUN apt update -y && apt upgrade -y && \
-    apt install curl -y && \
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt install gcc g++ make nodejs inotify-tools postgresql-client locales -y
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install curl -y
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
+RUN apt-get install gcc g++ make nodejs inotify-tools postgresql-client locales -y
 
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
@@ -19,10 +19,10 @@ COPY . $APP_DIR
 
 WORKDIR $APP_DIR
 
-RUN mix local.hex --force && \
-    mix archive.install --force hex phx_new && \
-    mix local.rebar --force && \
-    mix deps.get --force
+RUN mix local.hex --force
+RUN mix archive.install --force hex phx_new
+RUN mix local.rebar --force
+RUN mix deps.get --force
 
 WORKDIR assets
 
