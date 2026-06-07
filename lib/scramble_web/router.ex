@@ -20,7 +20,10 @@ defmodule ScrambleWeb.Router do
   scope "/", ScrambleWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live_session :mount_current_user,
+      on_mount: [{ScrambleWeb.UserAuth, :mount_current_user}] do
+      live "/", HomeLive.Index, :index
+    end
   end
 
   # Other scopes may use custom stacks.
